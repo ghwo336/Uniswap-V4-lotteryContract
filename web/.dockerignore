@@ -1,0 +1,13 @@
+node_modules
+dist
+.git
+.gitignore
+*.tsbuildinfo
+README.md
+Dockerfile
+.dockerignore
+
+# .env 는 일부러 제외하지 않습니다.
+# Vite 가 빌드 타임에 VITE_* 값을 번들에 인라인하므로
+# 빌드 컨텍스트에 있어야 합니다. (공개 컨트랙트 주소만 들어있음)
+# 루트 .env (배포용 개인키) 는 빌드 컨텍스트가 ./web 이라 애초에 포함되지 않습니다.

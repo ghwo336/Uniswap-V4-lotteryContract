@@ -1,0 +1,17 @@
+# 정적 SPA 한 개만 서빙합니다.
+# 외부 노출은 Cloudflare Tunnel 로만 합니다. 포트는 127.0.0.1 에만 바인딩하므로
+# 호스트 밖에서는 직접 접근할 수 없습니다. (방화벽/포트포워딩 불필요)
+#
+# 주의: Vite 특성상 컨트랙트 주소가 이미지에 구워집니다.
+# deployments/sepolia.json 이 바뀌면 sync-env 후 반드시 재빌드해야 합니다.
+#   cd web && npm run sync-env && cd .. && docker compose up -d --build
+
+services:
+  web:
+    build:
+      context: ./web
+    image: lottery-hook-web:latest
+    container_name: lottery-hook-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3007:80"
